@@ -11,7 +11,7 @@ $ npm install --save imagemin-jpegoptim
 ## Usage
 
 ```js
-var Imagemin = require('image-min');
+var Imagemin = require('imagemin');
 var jpegoptim = require('imagemin-jpegoptim');
 
 var imagemin = new Imagemin()
