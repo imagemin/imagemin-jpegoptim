@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "jpegoptim image-min plugin",
   "license": "MIT",
-  "repository": "kevva/imagemin-jpegoptim",
+  "repository": "imagemin/imagemin-jpegoptim",
   "author": {
     "name": "Kevin Mårtensson",
     "email": "kevinmartensson@gmail.com",

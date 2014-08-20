@@ -1,12 +1,14 @@
-# imagemin-jpegoptim [![Build Status](https://travis-ci.org/kevva/imagemin-jpegoptim.svg?branch=master)](https://travis-ci.org/kevva/imagemin-jpegoptim)
+# imagemin-jpegoptim [![Build Status](https://travis-ci.org/imagemin/imagemin-jpegoptim.svg?branch=master)](https://travis-ci.org/imagemin/imagemin-jpegoptim)
 
-> jpegoptim [imagemin](https://github.com/kevva/imagemin) plugin
+> jpegoptim [imagemin](https://github.com/imagemin/imagemin) plugin
+
 
 ## Install
 
-```bash
+```sh
 $ npm install --save imagemin-jpegoptim
 ```
+
 
 ## Usage
 
@@ -15,12 +17,13 @@ var Imagemin = require('imagemin');
 var jpegoptim = require('imagemin-jpegoptim');
 
 var imagemin = new Imagemin()
-    .src('foo.jpg')
-    .dest('foo-optimized.jpg')
-    .use(jpegoptim({ progressive: true }));
+	.src('foo.jpg')
+	.dest('foo-optimized.jpg')
+	.use(jpegoptim({ progressive: true }));
 
 imagemin.optimize();
 ```
+
 
 ## Options
 
@@ -31,6 +34,7 @@ Default: `false`
 
 Lossless conversion to progressive.
 
+
 ## License
 
-MIT © [Kevin Mårtensson](https://github.com/kevva)
+MIT © [imagemin](https://github.com/imagemin)
