@@ -3,6 +3,7 @@
 var ExecBuffer = require('exec-buffer');
 var isJpg = require('is-jpg');
 var jpegoptim = require('jpegoptim-bin').path;
+var mkdir = require('mkdirp');
 var path = require('path');
 
 /**
@@ -28,16 +29,23 @@ module.exports = function (opts) {
             args.push('--all-progressive');
         }
 
-        exec
-            .use(jpegoptim, args.concat(['--dest="' + path.dirname(exec.dest()) + '"', exec.src()]))
-            .run(file.contents, function (err, buf) {
-                if (err) {
-                    cb(err);
-                    return;
-                }
+        mkdir(exec.dest(), function (err) {
+            if (err) {
+                cb(err);
+                return;
+            }
 
-                file.contents = buf;
-                cb();
-            });
+            exec.use(jpegoptim, args.concat(['--dest=' + exec.dest(), exec.src()]));
+            exec.dest(path.join(exec.dest(), path.basename(exec.src())));
+            exec.run(file.contents, function (err, buf) {
+                    if (err) {
+                        cb(err);
+                        return;
+                    }
+
+                    file.contents = buf;
+                    cb();
+                });
+        });
     };
 };
