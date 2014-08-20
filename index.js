@@ -1,7 +1,7 @@
 'use strict';
 
 var ExecBuffer = require('exec-buffer');
-var imageType = require('image-type');
+var isJpg = require('is-jpg');
 var jpegoptim = require('jpegoptim-bin').path;
 var path = require('path');
 
@@ -16,8 +16,9 @@ module.exports = function (opts) {
     opts = opts || {};
 
     return function (file, imagemin, cb) {
-        if (imageType(file.contents) !== 'jpg') {
-            return cb();
+        if (!isJpg(file.contents)) {
+            cb();
+            return;
         }
 
         var args = ['--strip-all', '--strip-iptc', '--strip-icc'];
@@ -31,7 +32,8 @@ module.exports = function (opts) {
             .use(jpegoptim, args.concat(['--dest="' + path.dirname(exec.dest()) + '"', exec.src()]))
             .run(file.contents, function (err, buf) {
                 if (err) {
-                    return cb(err);
+                    cb(err);
+                    return;
                 }
 
                 file.contents = buf;
