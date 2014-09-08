@@ -1,10 +1,9 @@
 'use strict';
 
-var ExecBuffer = require('exec-buffer');
 var isJpg = require('is-jpg');
 var jpegoptim = require('jpegoptim-bin').path;
-var mkdir = require('mkdirp');
 var path = require('path');
+var spawn = require('child_process').spawn;
 
 /**
  * jpegoptim image-min plugin
@@ -22,31 +21,42 @@ module.exports = function (opts) {
 			return;
 		}
 
-		var args = ['--strip-all', '--strip-iptc', '--strip-icc'];
-		var exec = new ExecBuffer();
+		var args = ['--strip-all', '--strip-iptc', '--strip-icc', '--stdin', '--stdout'];
+		var err = '';
+		var ret = [];
+		var len = 0;
 
 		if (opts.progressive) {
 			args.push('--all-progressive');
 		}
 
-		mkdir(exec.dest(), function (err) {
-			if (err) {
-				cb(err);
+		var cp = spawn(jpegoptim, args);
+
+		cp.on('error', function (err) {
+			cb(err);
+			return;
+		});
+
+		cp.stderr.setEncoding('utf8');
+		cp.stderr.on('data', function (data) {
+			err += data;
+		});
+
+		cp.stdout.on('data', function (data) {
+			ret.push(data);
+			len += data.length;
+		});
+
+		cp.on('close', function (code) {
+			if (code) {
+				cb(new Error(err));
 				return;
 			}
 
-			exec.use(jpegoptim, args.concat(['--dest=' + exec.dest(), exec.src()]));
-			exec.dest(path.join(exec.dest(), path.basename(exec.src())));
-
-			exec.run(file.contents, function (err, buf) {
-				if (err) {
-					cb(err);
-					return;
-				}
-
-				file.contents = buf;
-				cb();
-			});
+			file.contents = Buffer.concat(ret, len);
+			cb();
 		});
+
+		cp.stdin.end(file.contents);
 	};
 };
