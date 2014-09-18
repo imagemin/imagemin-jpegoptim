@@ -1,7 +1,7 @@
 {
   "name": "imagemin-jpegoptim",
   "version": "1.0.0",
-  "description": "jpegoptim image-min plugin",
+  "description": "jpegoptim imagemin plugin",
   "license": "MIT",
   "repository": "imagemin/imagemin-jpegoptim",
   "author": {
@@ -20,6 +20,7 @@
   ],
   "keywords": [
     "compress",
+    "gulpplugin",
     "image",
     "imageminplugin",
     "img",
@@ -29,10 +30,12 @@
   ],
   "dependencies": {
     "is-jpg": "^1.0.0",
-    "jpegoptim-bin": "^0.1.6"
+    "jpegoptim-bin": "^1.0.0",
+    "through2": "^0.6.1"
   },
   "devDependencies": {
     "ava": "0.0.4",
-    "imagemin": "^1.0.2"
+    "buffer-equal": "0.0.1",
+    "vinyl-file": "^1.1.0"
   }
 }

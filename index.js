@@ -2,8 +2,8 @@
 
 var isJpg = require('is-jpg');
 var jpegoptim = require('jpegoptim-bin').path;
-var path = require('path');
 var spawn = require('child_process').spawn;
+var through = require('through2');
 
 /**
  * jpegoptim image-min plugin
@@ -15,9 +15,19 @@ var spawn = require('child_process').spawn;
 module.exports = function (opts) {
 	opts = opts || {};
 
-	return function (file, imagemin, cb) {
+	return through.obj(function (file, enc, cb) {
+		if (file.isNull()) {
+			cb(null, file);
+			return;
+		}
+
+		if (file.isStream()) {
+			cb(new Error('Streaming is not supported'));
+			return;
+		}
+
 		if (!isJpg(file.contents)) {
-			cb();
+			cb(null, file);
 			return;
 		}
 
@@ -54,9 +64,9 @@ module.exports = function (opts) {
 			}
 
 			file.contents = Buffer.concat(ret, len);
-			cb();
+			cb(null, file);
 		});
 
 		cp.stdin.end(file.contents);
-	};
+	});
 };

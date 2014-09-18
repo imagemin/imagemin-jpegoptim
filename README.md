@@ -17,13 +17,31 @@ var Imagemin = require('imagemin');
 var jpegoptim = require('imagemin-jpegoptim');
 
 var imagemin = new Imagemin()
-	.src('foo.jpg')
-	.dest('foo-optimized.jpg')
-	.use(jpegoptim({ progressive: true }));
+	.src('images/*.{jpg,png}')
+	.dest('build/images')
+	.use(jpegoptim());
 
-imagemin.optimize();
+imagemin.run(function (err, files) {
+	if (err) {
+		throw err;
+	}
+
+	console.log('Files optimized successfully!');
+});
 ```
 
+You can also use this plugin with gulp:
+
+```js
+var gulp = require('gulp');
+var jpegoptim = require('imagemin-jpegoptim');
+
+gulp.task('default', function () {
+	return gulp.src('images/*.{jpg,png}')
+		.pipe(jpegoptim())
+		.pipe(gulp.dest('build/images'));
+});
+```
 
 ## Options
 
