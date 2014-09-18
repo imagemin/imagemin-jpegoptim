@@ -15,4 +15,4 @@ build: off
 
 test_script:
   - ps: 'node test\\test.js # PowerShell'
-  - cmd: npm test\test.js
+  - cmd: node test\test.js

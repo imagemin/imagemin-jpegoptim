@@ -40,6 +40,14 @@ module.exports = function (opts) {
 			args.push('--all-progressive');
 		}
 
+		if (opts.max !== undefined) {
+			args.push('--max=' + opts.max);
+		}
+
+		if (opts.size) {
+			args.push('--size=' + opts.size);
+		}
+
 		var cp = spawn(jpegoptim, args);
 
 		cp.on('error', function (err) {

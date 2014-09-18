@@ -17,7 +17,7 @@ var Imagemin = require('imagemin');
 var jpegoptim = require('imagemin-jpegoptim');
 
 var imagemin = new Imagemin()
-	.src('images/*.{jpg,png}')
+	.src('images/*.jpg')
 	.dest('build/images')
 	.use(jpegoptim());
 
@@ -37,7 +37,7 @@ var gulp = require('gulp');
 var jpegoptim = require('imagemin-jpegoptim');
 
 gulp.task('default', function () {
-	return gulp.src('images/*.{jpg,png}')
+	return gulp.src('images/*.jpg')
 		.pipe(jpegoptim())
 		.pipe(gulp.dest('build/images'));
 });
@@ -51,6 +51,18 @@ Type: `Boolean`
 Default: `false`
 
 Lossless conversion to progressive.
+
+### max
+
+Type: `Number`
+
+Set maximum image quality factor. (`0` - `100`)
+
+### size
+
+Type: `Number` or `String`
+
+Try to optimize file to given size. Target size is specified either in kilo bytes (`1` -) or as percentage (`1%` - `99%`).
 
 
 ## License
