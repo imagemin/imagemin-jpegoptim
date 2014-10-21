@@ -25,6 +25,26 @@ test('optimize a JPG', function (t) {
 	});
 });
 
+test('optimize a JPG using ctor', function (t) {
+	t.plan(3);
+
+	var Jpegoptim = jpegoptim.ctor();
+
+	read(path.join(__dirname, 'fixtures/test.jpg'), function (err, file) {
+		t.assert(!err);
+
+		var stream = new Jpegoptim();
+		var size = file.contents.length;
+
+		stream.on('data', function (data) {
+			t.assert(data.contents.length < size);
+			t.assert(isJpg(data.contents));
+		});
+
+		stream.end(file);
+	});
+});
+
 test('skip optimizing a non-JPG file', function (t) {
 	t.plan(2);
 
