@@ -13,27 +13,7 @@ test('optimize a JPG', function (t) {
 	read(path.join(__dirname, 'fixtures/test.jpg'), function (err, file) {
 		t.assert(!err, err);
 
-		var stream = jpegoptim();
-		var size = file.contents.length;
-
-		stream.on('data', function (data) {
-			t.assert(data.contents.length < size);
-			t.assert(isJpg(data.contents));
-		});
-
-		stream.end(file);
-	});
-});
-
-test('optimize a JPG using ctor', function (t) {
-	t.plan(3);
-
-	var Jpegoptim = jpegoptim.ctor();
-
-	read(path.join(__dirname, 'fixtures/test.jpg'), function (err, file) {
-		t.assert(!err, err);
-
-		var stream = new Jpegoptim();
+		var stream = jpegoptim()();
 		var size = file.contents.length;
 
 		stream.on('data', function (data) {
@@ -51,7 +31,7 @@ test('skip optimizing a non-JPG file', function (t) {
 	read(__filename, function (err, file) {
 		t.assert(!err, err);
 
-		var stream = jpegoptim();
+		var stream = jpegoptim()();
 		var contents = file.contents;
 
 		stream.on('data', function (data) {
@@ -68,7 +48,7 @@ test('skip optimizing an already optimized JPG', function (t) {
 	read(path.join(__dirname, 'fixtures/test-smallest.jpg'), function (err, file) {
 		t.assert(!err, err);
 
-		var stream = jpegoptim();
+		var stream = jpegoptim()();
 
 		stream.on('data', function (data) {
 			t.assert(bufferEqual(data.contents, file.contents));
@@ -84,7 +64,7 @@ test('throw error when a JPG is corrupt', function (t) {
 	read(path.join(__dirname, 'fixtures/test-corrupt.jpg'), function (err, file) {
 		t.assert(!err, err);
 
-		var stream = jpegoptim();
+		var stream = jpegoptim()();
 
 		stream.on('error', function (err) {
 			t.assert(err);
