@@ -1,4 +1,4 @@
-# imagemin-jpegoptim [![Build Status](http://img.shields.io/travis/imagemin/imagemin-jpegoptim.svg?style=flat)](https://travis-ci.org/imagemin/imagemin-jpegoptim) [![Build status](https://ci.appveyor.com/api/projects/status/dd2mjdl1lhqjj6u7)](https://ci.appveyor.com/project/ShinnosukeWatanabe/imagemin-jpegoptim)
+# imagemin-jpegoptim [![Build Status](http://img.shields.io/travis/imagemin/imagemin-jpegoptim.svg?style=flat)](https://travis-ci.org/imagemin/imagemin-jpegoptim) [![Build status](https://ci.appveyor.com/api/projects/status/dd2mjdl1lhqjj6u7?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/imagemin-jpegoptim)
 
 > jpegoptim [imagemin](https://github.com/imagemin/imagemin) plugin
 
