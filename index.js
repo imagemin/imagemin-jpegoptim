@@ -5,17 +5,10 @@ var jpegoptim = require('jpegoptim-bin').path;
 var spawn = require('child_process').spawn;
 var through = require('through2');
 
-/**
- * jpegoptim imagemin plugin
- *
- * @param {Object} opts
- * @api public
- */
-
 module.exports = function (opts) {
 	opts = opts || {};
 
-	return through.ctor({ objectMode: true }, function (file, enc, cb) {
+	return through.ctor({objectMode: true}, function (file, enc, cb) {
 		if (file.isNull()) {
 			cb(null, file);
 			return;
@@ -71,7 +64,10 @@ module.exports = function (opts) {
 				return;
 			}
 
-			file.contents = Buffer.concat(ret, len);
+			if (len < file.contents.length) {
+				file.contents = Buffer.concat(ret, len);
+			}
+
 			cb(null, file);
 		});
 

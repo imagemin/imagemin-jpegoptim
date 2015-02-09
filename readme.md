@@ -19,7 +19,7 @@ var jpegoptim = require('imagemin-jpegoptim');
 var imagemin = new Imagemin()
 	.src('images/*.jpg')
 	.dest('build/images')
-	.use(jpegoptim({ progressive: true }));
+	.use(jpegoptim({progressive: true}));
 
 imagemin.run(function (err, files) {
 	if (err) {
@@ -38,7 +38,7 @@ var jpegoptim = require('imagemin-jpegoptim');
 
 gulp.task('default', function () {
 	return gulp.src('images/*.jpg')
-		.pipe(jpegoptim({ progressive: true })())
+		.pipe(jpegoptim({progressive: true})())
 		.pipe(gulp.dest('build/images'));
 });
 ```
