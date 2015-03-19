@@ -71,6 +71,12 @@ module.exports = function (opts) {
 			cb(null, file);
 		});
 
+		cp.stdin.on('error', function (stdinErr) {
+			if (!err) {
+				err = stdinErr;
+			}
+		});
+
 		cp.stdin.end(file.contents);
 	});
 };
