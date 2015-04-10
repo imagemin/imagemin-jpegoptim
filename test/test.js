@@ -1,11 +1,11 @@
 'use strict';
 
+var path = require('path');
 var bufferEqual = require('buffer-equal');
 var isJpg = require('is-jpg');
-var jpegoptim = require('../');
-var path = require('path');
 var read = require('vinyl-file').read;
 var test = require('ava');
+var imageminJpegoptim = require('../');
 
 test('optimize a JPG', function (t) {
 	t.plan(3);
@@ -13,11 +13,11 @@ test('optimize a JPG', function (t) {
 	read(path.join(__dirname, 'fixtures/test.jpg'), function (err, file) {
 		t.assert(!err, err);
 
-		var stream = jpegoptim()();
+		var stream = imageminJpegoptim()();
 		var size = file.contents.length;
 
 		stream.on('data', function (data) {
-			t.assert(data.contents.length < size);
+			t.assert(data.contents.length < size, data.contents.length);
 			t.assert(isJpg(data.contents));
 		});
 
@@ -31,7 +31,7 @@ test('skip optimizing a non-JPG file', function (t) {
 	read(__filename, function (err, file) {
 		t.assert(!err, err);
 
-		var stream = jpegoptim()();
+		var stream = imageminJpegoptim()();
 		var contents = file.contents;
 
 		stream.on('data', function (data) {
@@ -48,7 +48,7 @@ test('skip optimizing an already optimized JPG', function (t) {
 	read(path.join(__dirname, 'fixtures/test-smallest.jpg'), function (err, file) {
 		t.assert(!err, err);
 
-		var stream = jpegoptim()();
+		var stream = imageminJpegoptim()();
 
 		stream.on('data', function (data) {
 			t.assert(bufferEqual(data.contents, file.contents));
@@ -64,7 +64,7 @@ test('throw error when a small JPG is corrupt', function (t) {
 	read(path.join(__dirname, 'fixtures/test-corrupt.jpg'), function (err, file) {
 		t.assert(!err, err);
 
-		var stream = jpegoptim()();
+		var stream = imageminJpegoptim()();
 
 		stream.on('error', function (err) {
 			t.assert(err);
@@ -81,7 +81,7 @@ test('throw error when a large JPG is corrupt', function (t) {
 	read(path.join(__dirname, 'fixtures/test-corrupt-large.jpg'), function (err, file) {
 		t.assert(!err, err);
 
-		var stream = jpegoptim()();
+		var stream = imageminJpegoptim()();
 
 		stream.on('error', function (err) {
 			t.assert(err);
