@@ -59,7 +59,7 @@ test('skip optimizing an already optimized JPG', function (t) {
 });
 
 test('throw error when a small JPG is corrupt', function (t) {
-	t.plan(3);
+	t.plan(4);
 
 	read(path.join(__dirname, 'fixtures/test-corrupt.jpg'), function (err, file) {
 		t.assert(!err, err);
@@ -68,6 +68,7 @@ test('throw error when a small JPG is corrupt', function (t) {
 
 		stream.on('error', function (err) {
 			t.assert(err);
+			t.assert(path.basename(err.fileName) === 'test-corrupt.jpg', err.fileName);
 			t.assert(/JFIF/.test(err.message), err.message);
 		});
 
@@ -76,7 +77,7 @@ test('throw error when a small JPG is corrupt', function (t) {
 });
 
 test('throw error when a large JPG is corrupt', function (t) {
-	t.plan(3);
+	t.plan(4);
 
 	read(path.join(__dirname, 'fixtures/test-corrupt-large.jpg'), function (err, file) {
 		t.assert(!err, err);
@@ -85,6 +86,7 @@ test('throw error when a large JPG is corrupt', function (t) {
 
 		stream.on('error', function (err) {
 			t.assert(err);
+			t.assert(path.basename(err.fileName) === 'test-corrupt-large.jpg', err.fileName);
 			t.assert(/stdin/.test(err.message), err.message);
 		});
 
