@@ -30,8 +30,8 @@
   ],
   "dependencies": {
     "is-jpg": "^1.0.0",
-    "jpegoptim-bin": "^2.0.0",
-    "through2": "^0.6.1"
+    "jpegoptim-bin": "^3.0.0",
+    "through2": "^2.0.0"
   },
   "devDependencies": {
     "ava": "^0.0.4",
