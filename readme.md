@@ -1,4 +1,4 @@
-# imagemin-jpegoptim [![Build Status](http://img.shields.io/travis/imagemin/imagemin-jpegoptim.svg?style=flat)](https://travis-ci.org/imagemin/imagemin-jpegoptim) [![Build status](https://ci.appveyor.com/api/projects/status/dd2mjdl1lhqjj6u7?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/imagemin-jpegoptim)
+# imagemin-jpegoptim [![Build Status](https://travis-ci.org/imagemin/imagemin-jpegoptim.svg?branch=master)](https://travis-ci.org/imagemin/imagemin-jpegoptim) [![Build status](https://ci.appveyor.com/api/projects/status/dd2mjdl1lhqjj6u7?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/imagemin-jpegoptim)
 
 > [jpegoptim](https://github.com/tjko/jpegoptim) [imagemin](https://github.com/imagemin/imagemin) plugin
 
@@ -15,52 +15,51 @@ See [jpegoptim-bin's install section](https://github.com/imagemin/jpegoptim-bin#
 ## Usage
 
 ```js
-var Imagemin = require('imagemin');
-var imageminJpegoptim = require('imagemin-jpegoptim');
+const imagemin = require('imagemin');
+const imageminJpegoptim = require('imagemin-jpegoptim');
 
-new Imagemin()
-	.src('images/*.jpg')
-	.dest('build/images')
-	.use(imageminJpegoptim({progressive: true}))
-	.run();
-```
-
-You can also use this plugin with gulp:
-
-```js
-var gulp = require('gulp');
-var imageminJpegoptim = require('imagemin-jpegoptim');
-
-gulp.task('default', function () {
-	return gulp.src('images/*.jpg')
-		.pipe(imageminJpegoptim({progressive: true})())
-		.pipe(gulp.dest('build/images'));
+imagemin(['images/*.jpg'], 'build/images', {
+	use: [
+		imageminJpegoptim()
+	]
+}).then(() => {
+	console.log('Images optimized');
 });
 ```
 
 
 ## API
 
-### imageminJpegoptim(options)
+### imageminJpegoptim([options])(buffer)
 
-#### options.progressive
+Returns a promise for a buffer.
 
-Type: `boolean`  
+#### options
+
+##### progressive
+
+Type: `boolean`<br>
 Default: `false`
 
 Lossless conversion to progressive.
 
-#### options.max
+##### max
 
 Type: `number`
 
-Set maximum image quality factor. (`0` - `100`)
+Set maximum image quality factor. (`0`-`100`).
 
-#### options.size
+##### size
 
-Type: `number` or `string`
+Type: `number` `string`
 
-Try to optimize file to given size. Target size is specified either in kilo bytes (`1` -) or as percentage (`1%` - `99%`).
+Try to optimize file to given size. Target size is specified either in kilo bytes (`1`-) or as percentage (`1%`-`99%`).
+
+#### buffer
+
+Type: `buffer`
+
+Buffer to optimize.
 
 
 ## License
