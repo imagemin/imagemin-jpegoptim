@@ -38,7 +38,7 @@ Returns a promise for a buffer.
 
 ##### progressive
 
-Type: `boolean`  
+Type: `boolean`<br>
 Default: `false`
 
 Lossless conversion to progressive.
