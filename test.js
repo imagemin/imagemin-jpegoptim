@@ -30,3 +30,7 @@ test('progressive option', async t => {
 	const data = await m({progressive: true})(buf);
 	t.true(isProgressive.buffer(data));
 });
+
+test('throw on wrong input', async t => {
+	t.throws(m()('foo'), 'Expected a Buffer, got string');
+});

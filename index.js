@@ -7,7 +7,7 @@ module.exports = opts => buf => {
 	opts = Object.assign({}, opts);
 
 	if (!Buffer.isBuffer(buf)) {
-		return Promise.reject(new TypeError('Expected a buffer'));
+		return Promise.reject(new TypeError(`Expected a Buffer, got ${typeof buf}`));
 	}
 
 	if (!isJpg(buf)) {
