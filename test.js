@@ -17,12 +17,12 @@ test('optimize a JPG', async t => {
 
 test('throw error when a JPG is corrupt', async t => {
 	const buf = await fsP.readFile(path.join(__dirname, 'fixtures', 'test-corrupt.jpg'));
-	t.throws(m()(buf), /JFIF/);
+	await t.throws(m()(buf), /JFIF/);
 });
 
 test('throw error when a large JPG is corrupt', async t => {
 	const buf = await fsP.readFile(path.join(__dirname, 'fixtures', 'test-corrupt-large.jpg'));
-	t.throws(m()(buf), /stdin/);
+	await t.throws(m()(buf), /stdin/);
 });
 
 test('progressive option', async t => {
@@ -32,5 +32,5 @@ test('progressive option', async t => {
 });
 
 test('throw on wrong input', async t => {
-	t.throws(m()('foo'), 'Expected a Buffer, got string');
+	await t.throws(m()('foo'), 'Expected a Buffer, got string');
 });

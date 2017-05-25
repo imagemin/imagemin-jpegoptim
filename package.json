@@ -39,7 +39,7 @@
     "optimize"
   ],
   "dependencies": {
-    "execa": "^0.4.0",
+    "execa": "^0.6.3",
     "is-jpg": "^1.0.0",
     "jpegoptim-bin": "^3.0.0"
   },
