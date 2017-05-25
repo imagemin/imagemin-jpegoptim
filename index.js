@@ -28,26 +28,26 @@ module.exports = opts => buf => {
 
 	if (opts.stripAll) {
 		args.push('--strip-all');
-	} else {
-		if (opts.stripCom) {
-			args.push('--strip-com');
-		}
+	}
 
-		if (opts.stripExif) {
-			args.push('--strip-exif');
-		}
+	if (opts.stripCom) {
+		args.push('--strip-com');
+	}
 
-		if (opts.stripIptc) {
-			args.push('--strip-iptc');
-		}
+	if (opts.stripExif) {
+		args.push('--strip-exif');
+	}
 
-		if (opts.stripIcc) {
-			args.push('--strip-icc');
-		}
+	if (opts.stripIptc) {
+		args.push('--strip-iptc');
+	}
 
-		if (opts.stripXmp) {
-			args.push('--strip-xmp');
-		}
+	if (opts.stripIcc) {
+		args.push('--strip-icc');
+	}
+
+	if (opts.stripXmp) {
+		args.push('--strip-xmp');
 	}
 
 	if (opts.progressive) {
