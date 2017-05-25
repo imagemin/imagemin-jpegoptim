@@ -36,64 +36,16 @@ Returns a promise for a buffer.
 
 #### options
 
-##### progressive
-
-Type: `boolean`<br>
-Default: `false`
-
-Lossless conversion to progressive.
-
-##### max
-
-Type: `number`
-
-Set maximum image quality factor. (`0`-`100`).
-
-##### size
-
-Type: `number` `string`
-
-Try to optimize file to given size. Target size is specified either in kilo bytes (`1`-) or as percentage (`1%`-`99%`).
-
-#### Strip Markers
-
-Default is to strip all markers from file, but individual strip flags can be manually set. (You may want to do this if you notice different browsers rendering images differently, most notably when stripping ICC profile markers).
-
-##### stripCom
-
-Type: `boolean`  
-Default: `true`
-
-Strip Comment markers from output file.
-
-##### stripExif
-
-Type: `boolean`  
-Default: `true`
-
-Strip Exif markers from output file.
-
-##### stripIptc
-
-Type: `boolean`  
-Default: `true`
-
-Strip IPTC/Photoshop (APP13) markers from output file.
-
-##### stripIcc
-
-Type: `boolean`  
-Default: `true`
-
-Strip ICC profile markers from output file.
-
-##### stripXmp
-
-Type: `boolean`  
-Default: `true`
-
-Strip XMP markers markers from output file.
-
+| Option | Type | Default | Description | 
+| ------ | ---- | ------- | ----------- |
+| `progressive` | `boolean` | `false` | Lossless conversion to progressive. |
+| `max` | `number` | _N/A_ | Set maximum image quality factor. (`0`-`100`). |
+| `size` | `number`<br>`string` | _N/A_ | Try to optimize file to given size (disables lossless optimization mode). Target size is specified either in kilo bytes (`1`-`n`) or as percentage (`1%`-`99%`). |
+| `stripCom` | `boolean` | `true` | Strip Comment markers from output file. |
+| `stripExif` | `boolean` | `true` | Strip Exif markers from output file. |
+| `stripIptc` | `boolean` | `true` | Strip IPTC/Photoshop (APP13) markers from output file. |
+| `stripIcc` | `boolean` | `true` | Strip ICC profile markers from output file (_note: if your image seems to render differently between browsers/OSes, set this to `false`_). |
+| `stripXmp` | `boolean` | `true` | Strip XMP markers markers from output file. |
 
 
 #### buffer
