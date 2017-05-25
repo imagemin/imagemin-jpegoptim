@@ -53,7 +53,51 @@ Set maximum image quality factor. (`0`-`100`).
 
 Type: `number` `string`
 
-Try to optimize file to given size. Target size is specified either in kilo bytes (`1`-) or as percentage (`1%`-`99%`).
+Try to optimize file to given size. Target size is specified either in kilo bytes (`1`-`n`) or as percentage (`1%`-`99%`).
+
+##### stripAll
+
+Type: `boolean`  
+Default: `true`
+
+Strip all markers from output file. **Note**: If you want to control what markers are stripped, this _must_ be set to `false`.
+
+##### stripCom
+
+Type: `boolean`  
+Default: `true`
+
+Strip Comment markers from output file.
+
+##### stripExif
+
+Type: `boolean`  
+Default: `true`
+
+Strip Exif markers from output file.
+
+##### stripIptc
+
+Type: `boolean`  
+Default: `true`
+
+Strip IPTC/Photoshop (APP13) markers from output file.
+
+##### stripIcc
+
+Type: `boolean`  
+Default: `true`
+
+Strip ICC profile markers from output file.
+
+##### stripXmp
+
+Type: `boolean`  
+Default: `true`
+
+Strip XMP markers markers from output file.
+
+
 
 #### buffer
 
