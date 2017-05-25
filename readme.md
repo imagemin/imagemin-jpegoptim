@@ -53,7 +53,7 @@ Set maximum image quality factor. (`0`-`100`).
 
 Type: `number` `string`
 
-Try to optimize file to given size. Target size is specified either in kilo bytes (`1`-) or as percentage (`1%`-`99%`).
+Try to optimize file to given size. Target size is specified either in kilo bytes (`1`-`n`) or as percentage (`1%`-`99%`).
 
 ##### stripAll
 
