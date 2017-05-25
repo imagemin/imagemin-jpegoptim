@@ -5,7 +5,12 @@ const jpegoptim = require('jpegoptim-bin');
 
 module.exports = opts => buf => {
 	opts = Object.assign({
-		stripAll: true
+		stripAll: true,
+		stripCom: true,
+		stripExif: true,
+		stripIptc: true,
+		stripIcc: true,
+		stripXmp: true
 	}, opts);
 
 	if (!Buffer.isBuffer(buf)) {
