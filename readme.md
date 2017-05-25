@@ -39,7 +39,7 @@ Returns a promise for a buffer.
 | Option | Type | Default | Description | 
 | ------ | ---- | ------- | ----------- |
 | `progressive` | `boolean` | `false` | Lossless conversion to progressive. |
-| `max` | `number` | _N/A_ | Set maximum image quality factor. (`0`-`100`). |
+| `max` | `number` | _N/A_ | Set maximum image quality factor (disables lossless optimization mode, which is by default on). (`0`-`100`). |
 | `size` | `number`<br>`string` | _N/A_ | Try to optimize file to given size (disables lossless optimization mode). Target size is specified either in kilo bytes (`1`-`n`) or as percentage (`1%`-`99%`). |
 | `stripCom` | `boolean` | `true` | Strip Comment markers from output file. |
 | `stripExif` | `boolean` | `true` | Strip Exif markers from output file. |
