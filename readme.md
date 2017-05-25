@@ -55,6 +55,47 @@ Type: `number` `string`
 
 Try to optimize file to given size. Target size is specified either in kilo bytes (`1`-) or as percentage (`1%`-`99%`).
 
+#### Strip Markers
+
+Default is to strip all markers from file, but individual strip flags can be manually set. (You may want to do this if you notice different browsers rendering images differently, most notably when stripping ICC profile markers).
+
+##### stripCom
+
+Type: `boolean`  
+Default: `true`
+
+Strip Comment markers from output file.
+
+##### stripExif
+
+Type: `boolean`  
+Default: `true`
+
+Strip Exif markers from output file.
+
+##### stripIptc
+
+Type: `boolean`  
+Default: `true`
+
+Strip IPTC/Photoshop (APP13) markers from output file.
+
+##### stripIcc
+
+Type: `boolean`  
+Default: `true`
+
+Strip ICC profile markers from output file.
+
+##### stripXmp
+
+Type: `boolean`  
+Default: `true`
+
+Strip XMP markers markers from output file.
+
+
+
 #### buffer
 
 Type: `buffer`
