@@ -60,7 +60,7 @@ Try to optimize file to given size. Target size is specified either in kilo byte
 Type: `boolean`  
 Default: `true`
 
-Strip all markers from output file. If you want to control what markers are stripped, this _must_ be set to `false`.
+Strip all markers from output file. **Note**: If you want to control what markers are stripped, this _must_ be set to `false`.
 
 ##### stripCom
 
