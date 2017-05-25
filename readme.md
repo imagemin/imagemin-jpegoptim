@@ -67,35 +67,35 @@ Strip all markers from output file. **Note**: If you want to control what marker
 Type: `boolean`  
 Default: `true`
 
-Strip Comment markers from output file. Requires `stripAll` to be `false`.
+Strip Comment markers from output file.
 
 ##### stripExif
 
 Type: `boolean`  
 Default: `true`
 
-Strip Exif markers from output file. Requires `stripAll` to be `false`.
+Strip Exif markers from output file.
 
 ##### stripIptc
 
 Type: `boolean`  
 Default: `true`
 
-Strip IPTC/Photoshop (APP13) markers from output file. Requires `stripAll` to be `false`.
+Strip IPTC/Photoshop (APP13) markers from output file.
 
 ##### stripIcc
 
 Type: `boolean`  
 Default: `true`
 
-Strip ICC profile markers from output file. Requires `stripAll` to be `false`.
+Strip ICC profile markers from output file.
 
 ##### stripXmp
 
 Type: `boolean`  
 Default: `true`
 
-Strip XMP markers markers from output file. Requires `stripAll` to be `false`.
+Strip XMP markers markers from output file.
 
 
 
