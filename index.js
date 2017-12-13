@@ -3,6 +3,8 @@ const execa = require('execa');
 const isJpg = require('is-jpg');
 const jpegoptim = require('jpegoptim-bin');
 
+const MAX_BUFFER = 1024 * 1024 * 10; // 10mb
+
 module.exports = opts => buf => {
 	opts = Object.assign({
 		stripAll: true,
@@ -64,6 +66,7 @@ module.exports = opts => buf => {
 
 	return execa.stdout(jpegoptim, args, {
 		encoding: null,
-		input: buf
+		input: buf,
+		maxBuffer: opts.maxBuffer || MAX_BUFFER
 	});
 };
