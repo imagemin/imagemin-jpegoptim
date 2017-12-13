@@ -99,6 +99,12 @@ Default: `true`
 
 Strip XMP markers markers from output file.
 
+##### maxBuffer
+
+Type: `number`<br>
+Default: `1024 * 1024 * 10` // 10mb 
+
+Largest amount of data in bytes allowed for operation. 
 
 #### buffer
 
