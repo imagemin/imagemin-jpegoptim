@@ -1,52 +1,52 @@
 {
-	"name": "imagemin-jpegoptim",
-	"version": "5.1.0",
-	"description": "Imagemin plugin for jpegoptim",
-	"license": "MIT",
-	"repository": "imagemin/imagemin-jpegoptim",
-	"author": {
-		"name": "Kevin Mårtensson",
-		"email": "kevinmartensson@gmail.com",
-		"url": "github.com/kevva"
-	},
-	"maintainers": [
-		{
-			"name": "Sindre Sorhus",
-			"email": "sindresorhus@gmail.com",
-			"url": "sindresorhus.com"
-		},
-		{
-			"name": "Shinnosuke Watanabe",
-			"url": "github.com/shinnn"
-		}
-	],
-	"engines": {
-		"node": ">=4"
-	},
-	"scripts": {
-		"test": "xo && ava"
-	},
-	"files": [
-		"index.js"
-	],
-	"keywords": [
-		"compress",
-		"image",
-		"imageminplugin",
-		"img",
-		"jpg",
-		"minify",
-		"optimize"
-	],
-	"dependencies": {
-		"execa": "^0.8.0",
-		"is-jpg": "^1.0.0",
-		"jpegoptim-bin": "^4.0.0"
-	},
-	"devDependencies": {
-		"ava": "*",
-		"is-progressive": "^3.0.0",
-		"pify": "^3.0.0",
-		"xo": "*"
-	}
+  "name": "imagemin-jpegoptim",
+  "version": "5.2.0",
+  "description": "Imagemin plugin for jpegoptim",
+  "license": "MIT",
+  "repository": "imagemin/imagemin-jpegoptim",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "github.com/kevva"
+  },
+  "maintainers": [
+    {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "sindresorhus.com"
+    },
+    {
+      "name": "Shinnosuke Watanabe",
+      "url": "github.com/shinnn"
+    }
+  ],
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "compress",
+    "image",
+    "imageminplugin",
+    "img",
+    "jpg",
+    "minify",
+    "optimize"
+  ],
+  "dependencies": {
+    "execa": "^0.8.0",
+    "is-jpg": "^1.0.0",
+    "jpegoptim-bin": "^4.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "is-progressive": "^3.0.0",
+    "pify": "^3.0.0",
+    "xo": "*"
+  }
 }
