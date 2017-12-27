@@ -3,22 +3,22 @@ const execa = require('execa');
 const isJpg = require('is-jpg');
 const jpegoptim = require('jpegoptim-bin');
 
-module.exports = opts => buf => {
-	opts = Object.assign({
+module.exports = options => buffer => {
+	options = Object.assign({
 		stripAll: true,
 		stripCom: true,
 		stripExif: true,
 		stripIptc: true,
 		stripIcc: true,
 		stripXmp: true
-	}, opts);
+	}, options);
 
-	if (!Buffer.isBuffer(buf)) {
-		return Promise.reject(new TypeError(`Expected a Buffer, got ${typeof buf}`));
+	if (!Buffer.isBuffer(buffer)) {
+		return Promise.reject(new TypeError(`Expected a Buffer, got ${typeof buffer}`));
 	}
 
-	if (!isJpg(buf)) {
-		return Promise.resolve(buf);
+	if (!isJpg(buffer)) {
+		return Promise.resolve(buffer);
 	}
 
 	const args = [
@@ -26,44 +26,45 @@ module.exports = opts => buf => {
 		'--stdout'
 	];
 
-	if (opts.stripAll) {
+	if (options.stripAll) {
 		args.push('--strip-all');
 	}
 
-	if (opts.stripCom) {
+	if (options.stripCom) {
 		args.push('--strip-com');
 	}
 
-	if (opts.stripExif) {
+	if (options.stripExif) {
 		args.push('--strip-exif');
 	}
 
-	if (opts.stripIptc) {
+	if (options.stripIptc) {
 		args.push('--strip-iptc');
 	}
 
-	if (opts.stripIcc) {
+	if (options.stripIcc) {
 		args.push('--strip-icc');
 	}
 
-	if (opts.stripXmp) {
+	if (options.stripXmp) {
 		args.push('--strip-xmp');
 	}
 
-	if (opts.progressive) {
+	if (options.progressive) {
 		args.push('--all-progressive');
 	}
 
-	if (opts.max !== undefined) {
-		args.push(`--max=${opts.max}`);
+	if (options.max !== undefined) {
+		args.push(`--max=${options.max}`);
 	}
 
-	if (opts.size) {
-		args.push(`--size=${opts.size}`);
+	if (options.size) {
+		args.push(`--size=${options.size}`);
 	}
 
 	return execa.stdout(jpegoptim, args, {
 		encoding: null,
-		input: buf
+		input: buffer,
+		maxBuffer: Infinity
 	});
 };

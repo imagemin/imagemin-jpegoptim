@@ -1,15 +1,15 @@
 # imagemin-jpegoptim [![Build Status](https://travis-ci.org/imagemin/imagemin-jpegoptim.svg?branch=master)](https://travis-ci.org/imagemin/imagemin-jpegoptim) [![Build status](https://ci.appveyor.com/api/projects/status/dd2mjdl1lhqjj6u7?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/imagemin-jpegoptim)
 
-> [jpegoptim](https://github.com/tjko/jpegoptim) [imagemin](https://github.com/imagemin/imagemin) plugin
+> [Imagemin](https://github.com/imagemin/imagemin) plugin for [jpegoptim](https://github.com/tjko/jpegoptim)
 
 
 ## Install
 
 ```
-$ npm install --save imagemin-jpegoptim
+$ npm install imagemin-jpegoptim
 ```
 
-See [jpegoptim-bin's install section](https://github.com/imagemin/jpegoptim-bin#install) for requirements.
+See [`jpegoptim-bin`'s install section](https://github.com/imagemin/jpegoptim-bin#install) for requirements.
 
 
 ## Usage
@@ -18,13 +18,15 @@ See [jpegoptim-bin's install section](https://github.com/imagemin/jpegoptim-bin#
 const imagemin = require('imagemin');
 const imageminJpegoptim = require('imagemin-jpegoptim');
 
-imagemin(['images/*.jpg'], 'build/images', {
-	use: [
-		imageminJpegoptim()
-	]
-}).then(() => {
+(async () => {
+	await imagemin(['images/*.jpg'], 'build/images', {
+		use: [
+			imageminJpegoptim()
+		]
+	});
+
 	console.log('Images optimized');
-});
+})();
 ```
 
 
@@ -32,9 +34,11 @@ imagemin(['images/*.jpg'], 'build/images', {
 
 ### imageminJpegoptim([options])(buffer)
 
-Returns a promise for a buffer.
+Returns a `Promise<Buffer>`.
 
 #### options
+
+Type: `Object`
 
 ##### progressive
 
@@ -62,7 +66,7 @@ Default: `true`
 
 Strip all markers from output file.
 
-**Note**: If you want to control what markers are stripped, this _must_ be set to `false`.
+**Note**: If you want to control what markers are stripped, this *must* be set to `false`.
 
 ##### stripCom
 
@@ -109,4 +113,4 @@ Buffer to optimize.
 
 ## License
 
-MIT © [imagemin](https://github.com/imagemin)
+MIT © [Imagemin](https://github.com/imagemin)

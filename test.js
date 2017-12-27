@@ -4,30 +4,30 @@ import isJpg from 'is-jpg';
 import isProgressive from 'is-progressive';
 import pify from 'pify';
 import test from 'ava';
-import m from './';
+import m from '.';
 
 const fsP = pify(fs);
 
 test('optimize a JPG', async t => {
-	const buf = await fsP.readFile(path.join(__dirname, 'fixtures', 'test.jpg'));
-	const data = await m()(buf);
-	t.true(data.length < buf.length);
+	const buffer = await fsP.readFile(path.join(__dirname, 'fixtures/test.jpg'));
+	const data = await m()(buffer);
+	t.true(data.length < buffer.length);
 	t.true(isJpg(data));
 });
 
 test('throw error when a JPG is corrupt', async t => {
-	const buf = await fsP.readFile(path.join(__dirname, 'fixtures', 'test-corrupt.jpg'));
-	await t.throws(m()(buf), /JFIF/);
+	const buffer = await fsP.readFile(path.join(__dirname, 'fixtures/test-corrupt.jpg'));
+	await t.throws(m()(buffer), /JFIF/);
 });
 
 test('throw error when a large JPG is corrupt', async t => {
-	const buf = await fsP.readFile(path.join(__dirname, 'fixtures', 'test-corrupt-large.jpg'));
-	await t.throws(m()(buf), /stdin/);
+	const buffer = await fsP.readFile(path.join(__dirname, 'fixtures/test-corrupt-large.jpg'));
+	await t.throws(m()(buffer), /EPIPE|ERROR/);
 });
 
 test('progressive option', async t => {
-	const buf = await fsP.readFile(path.join(__dirname, 'fixtures', 'test.jpg'));
-	const data = await m({progressive: true})(buf);
+	const buffer = await fsP.readFile(path.join(__dirname, 'fixtures/test.jpg'));
+	const data = await m({progressive: true})(buffer);
 	t.true(isProgressive.buffer(data));
 });
 
