@@ -1,36 +1,36 @@
-import fs from 'fs';
-import path from 'path';
-import isJpg from 'is-jpg';
-import isProgressive from 'is-progressive';
-import pify from 'pify';
-import test from 'ava';
-import m from '.';
+const {promisify} = require('util');
+const fs = require('fs');
+const path = require('path');
+const isJpg = require('is-jpg');
+const isProgressive = require('is-progressive');
+const test = require('ava');
+const m = require('.');
 
-const fsP = pify(fs);
+const readFile = promisify(fs.readFile);
 
 test('optimize a JPG', async t => {
-	const buffer = await fsP.readFile(path.join(__dirname, 'fixtures/test.jpg'));
+	const buffer = await readFile(path.join(__dirname, 'fixtures/test.jpg'));
 	const data = await m()(buffer);
 	t.true(data.length < buffer.length);
 	t.true(isJpg(data));
 });
 
 test('throw error when a JPG is corrupt', async t => {
-	const buffer = await fsP.readFile(path.join(__dirname, 'fixtures/test-corrupt.jpg'));
+	const buffer = await readFile(path.join(__dirname, 'fixtures/test-corrupt.jpg'));
 	await t.throwsAsync(async () => {
 		await m()(buffer);
-	}, /JFIF/);
+	}, {message: /JFIF/});
 });
 
 test('throw error when a large JPG is corrupt', async t => {
-	const buffer = await fsP.readFile(path.join(__dirname, 'fixtures/test-corrupt-large.jpg'));
+	const buffer = await readFile(path.join(__dirname, 'fixtures/test-corrupt-large.jpg'));
 	await t.throwsAsync(async () => {
 		await m()(buffer);
-	}, /EPIPE|ERROR/);
+	}, {message: /EPIPE|ERROR/});
 });
 
 test('progressive option', async t => {
-	const buffer = await fsP.readFile(path.join(__dirname, 'fixtures/test.jpg'));
+	const buffer = await readFile(path.join(__dirname, 'fixtures/test.jpg'));
 	const data = await m({progressive: true})(buffer);
 	t.true(isProgressive.buffer(data));
 });
@@ -38,5 +38,5 @@ test('progressive option', async t => {
 test('throw on wrong input', async t => {
 	await t.throwsAsync(async () => {
 		await m()('foo');
-	}, 'Expected a Buffer, got string');
+	}, {message: 'Expected a Buffer, got string'});
 });
