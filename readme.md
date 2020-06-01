@@ -19,8 +19,9 @@ const imagemin = require('imagemin');
 const imageminJpegoptim = require('imagemin-jpegoptim');
 
 (async () => {
-	await imagemin(['images/*.jpg'], 'build/images', {
-		use: [
+	await imagemin(['images/*.jpg'], {
+		destination: 'build/images',
+		plugins: [
 			imageminJpegoptim()
 		]
 	});
