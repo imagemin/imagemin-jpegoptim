@@ -1,4 +1,4 @@
-# imagemin-jpegoptim [![Build Status](https://travis-ci.org/imagemin/imagemin-jpegoptim.svg?branch=master)](https://travis-ci.org/imagemin/imagemin-jpegoptim)
+# imagemin-jpegoptim ![GitHub Actions Status](https://github.com/imagemin/imagemin-jpegoptim/workflows/test/badge.svg?branch=master)
 
 > [Imagemin](https://github.com/imagemin/imagemin) plugin for [jpegoptim](https://github.com/tjko/jpegoptim)
 
