@@ -1,7 +1,6 @@
-# imagemin-jpegoptim ![GitHub Actions Status](https://github.com/imagemin/imagemin-jpegoptim/workflows/test/badge.svg?branch=master)
+# imagemin-jpegoptim
 
 > [Imagemin](https://github.com/imagemin/imagemin) plugin for [jpegoptim](https://github.com/tjko/jpegoptim)
-
 
 ## Install
 
@@ -10,7 +9,6 @@ $ npm install imagemin-jpegoptim
 ```
 
 See [`jpegoptim-bin`'s install section](https://github.com/imagemin/jpegoptim-bin#install) for requirements.
-
 
 ## Usage
 
@@ -30,20 +28,19 @@ const imageminJpegoptim = require('imagemin-jpegoptim');
 })();
 ```
 
-
 ## API
 
-### imageminJpegoptim([options])(buffer)
+### imageminJpegoptim(options?)(buffer)
 
 Returns a `Promise<Buffer>`.
 
 #### options
 
-Type: `Object`
+Type: `object`
 
 ##### progressive
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `false`
 
 Lossless conversion to progressive.
@@ -56,13 +53,13 @@ Set maximum image quality factor. (`0`-`100`).
 
 ##### size
 
-Type: `number` `string`
+Type: `number | string`
 
 Try to optimize file to given size. Target size is specified either in kilo bytes (`1`-`n`) or as percentage (`1%`-`99%`).
 
 ##### stripAll
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `true`
 
 Strip all markers from output file.
@@ -71,47 +68,41 @@ Strip all markers from output file.
 
 ##### stripCom
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `true`
 
 Strip comment markers from output file.
 
 ##### stripExif
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `true`
 
 Strip EXIF markers from output file.
 
 ##### stripIptc
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `true`
 
 Strip IPTC/Photoshop (APP13) markers from output file.
 
 ##### stripIcc
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `true`
 
 Strip ICC profile markers from output file.
 
 ##### stripXmp
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `true`
 
 Strip XMP markers markers from output file.
-
 
 #### buffer
 
 Type: `buffer`
 
 Buffer to optimize.
-
-
-## License
-
-MIT © [Imagemin](https://github.com/imagemin)
