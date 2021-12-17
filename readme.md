@@ -13,8 +13,8 @@ See [`jpegoptim-bin`'s install section](https://github.com/imagemin/jpegoptim-bi
 ## Usage
 
 ```js
-const imagemin = require('imagemin');
-const imageminJpegoptim = require('imagemin-jpegoptim');
+import imagemin from 'imagemin';
+import imageminJpegoptim from 'imagemin-jpegoptim';
 
 (async () => {
 	await imagemin(['images/*.jpg'], {

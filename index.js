@@ -1,9 +1,9 @@
-'use strict';
-const execa = require('execa');
-const isJpg = require('is-jpg');
-const jpegoptim = require('jpegoptim-bin');
+import {Buffer} from 'node:buffer';
+import {execa} from 'execa';
+import isJpg from 'is-jpg';
+import jpegoptim from 'jpegoptim-bin';
 
-module.exports = options => async buffer => {
+const imageminJpegoptim = options => async buffer => {
 	options = {
 		stripAll: true,
 		stripCom: true,
@@ -11,7 +11,7 @@ module.exports = options => async buffer => {
 		stripIptc: true,
 		stripIcc: true,
 		stripXmp: true,
-		...options
+		...options,
 	};
 
 	if (!Buffer.isBuffer(buffer)) {
@@ -24,7 +24,7 @@ module.exports = options => async buffer => {
 
 	const args = [
 		'--stdin',
-		'--stdout'
+		'--stdout',
 	];
 
 	if (options.stripAll) {
@@ -59,15 +59,17 @@ module.exports = options => async buffer => {
 		args.push(`--max=${options.max}`);
 	}
 
-	if (options.size) {
+	if (options.size > 0) {
 		args.push(`--size=${options.size}`);
 	}
 
 	const {stdout} = await execa(jpegoptim, args, {
 		encoding: null,
 		input: buffer,
-		maxBuffer: Infinity
+		maxBuffer: Number.POSITIVE_INFINITY,
 	});
 
 	return stdout;
 };
+
+export default imageminJpegoptim;
